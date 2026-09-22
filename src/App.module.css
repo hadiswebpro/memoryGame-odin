@@ -1,0 +1,26 @@
+.app {
+    min-height: 100vh;
+    padding: 40px 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.app h1 {
+    margin: 0 0 10px;
+    font-size: 40px;
+}
+
+.app p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 700px;
+    margin: 30px auto 0;
+}
+
