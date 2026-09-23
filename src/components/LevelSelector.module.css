@@ -75,6 +75,13 @@
 }
 
 @media (max-width: 650px) {
+    .selector {
+        min-height: 55vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
     .levels {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 9px;
