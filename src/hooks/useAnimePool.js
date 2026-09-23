@@ -111,14 +111,14 @@ function useAnimePool() {
                     .filter((result) => result.status === "rejected")
                     .map((result) => result.reason?.message || String(result.reason));
 
-                if (successfulPages.length >= 20) {
+                if (successfulPages.length >= 50) {
                     setAnimePool(successfulPages);
                     setUsingFallback(false);
                     setError(null);
                 } else {
                     const details = failedPages.length
                         ? failedPages.join(" | ")
-                        : "Anime API returned too little data.";
+                        : `Anime API returned only ${successfulPages.length} cards.`;
 
                     throw new Error(details);
                 }
