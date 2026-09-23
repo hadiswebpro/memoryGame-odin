@@ -3,6 +3,12 @@
     padding: 50px 24px;
     box-sizing: border-box;
     text-align: center;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(214, 244, 229, 0.95), transparent 34%),
+        radial-gradient(circle at 85% 20%, rgba(250, 221, 232, 0.9), transparent 32%),
+        linear-gradient(135deg, #d9efe4 0%, #e9f4df 45%, #f8e1e9 100%);
+    background-size: 150% 150%;
+    animation: softGradient 14s ease-in-out infinite alternate;
 }
 
 .header {
@@ -140,4 +146,50 @@
     background: #f8e3ea;
     color: #5f665f;
     font-size: 14px;
+}
+
+@keyframes softGradient {
+    0% { background-position: 0% 20%; }
+    100% { background-position: 100% 80%; }
+}
+
+.actions button,
+.backButton,
+.result button {
+    border: 2px solid rgba(79, 104, 94, 0.35);
+    border-radius: 14px;
+    background: #d8eee4;
+    color: #43564e;
+    padding: 10px 18px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 5px 0 rgba(115, 135, 125, 0.35);
+    transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+
+.actions button:hover,
+.backButton:hover,
+.result button:hover {
+    transform: translateY(-4px) scale(1.03);
+    background: #f4dce5;
+    box-shadow: 0 8px 0 rgba(115, 135, 125, 0.3);
+}
+
+.actions button:active,
+.backButton:active,
+.result button:active {
+    transform: translateY(2px) scale(0.98);
+    box-shadow: 0 2px 0 rgba(115, 135, 125, 0.3);
+}
+
+.actions button:focus-visible,
+.backButton:focus-visible,
+.result button:focus-visible {
+    outline: 3px solid rgba(226, 163, 184, 0.8);
+    outline-offset: 3px;
+}
+
+.gameCard {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(8px);
 }
