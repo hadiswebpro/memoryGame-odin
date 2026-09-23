@@ -76,12 +76,11 @@
 
 @media (max-width: 650px) {
     .selector {
-        min-height: 68vh;
-        padding-top: 55px;
-        box-sizing: border-box;
+        min-height: 0;
+        padding-top: 0;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .selector {
