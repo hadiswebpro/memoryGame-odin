@@ -76,7 +76,9 @@
 
 @media (max-width: 650px) {
     .selector {
-        min-height: 55vh;
+        min-height: 68vh;
+        padding-top: 55px;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: center;
