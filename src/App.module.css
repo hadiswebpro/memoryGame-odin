@@ -28,101 +28,6 @@
     opacity: 0.7;
 }
 
-.gameInfo {
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    margin: 25px auto 18px;
-}
-
-.stat {
-    min-width: 90px;
-    padding: 12px 18px;
-    border: 2px solid black;
-    border-radius: 14px;
-    background: white;
-}
-
-.stat span {
-    display: block;
-    font-size: 13px;
-    opacity: 0.65;
-    margin-bottom: 4px;
-}
-
-.stat strong {
-    font-size: 22px;
-}
-
-.actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.actions button,
-.result button {
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 10px 18px;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
-}
-
-.actions button:hover,
-.result button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 0 black;
-}
-
-.secondaryButton {
-    background: black;
-    color: white;
-}
-
-.ghostButton {
-    background: white;
-    color: black;
-}
-
-.primaryButton {
-    background: black;
-    color: white;
-}
-
-.cardGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.result {
-    max-width: 450px;
-    margin: 30px auto;
-    padding: 30px 20px;
-    border: 2px solid black;
-    border-radius: 20px;
-    background: white;
-}
-
-.result h2 {
-    margin: 0 0 8px;
-    font-size: 30px;
-}
-
-.result p {
-    margin: 0 0 20px;
-    opacity: 0.7;
-}
-
 .message {
     min-height: 70vh;
     display: flex;
@@ -147,33 +52,6 @@
 @keyframes spin {
     to {
         transform: rotate(360deg);
-    }
-}
-
-@media (max-width: 600px) {
-    .app {
-        padding: 35px 15px;
-    }
-
-    .gameInfo {
-        gap: 8px;
-    }
-
-    .stat {
-        min-width: 70px;
-        padding: 10px;
-    }
-
-    .actions {
-        flex-direction: column;
-        max-width: 220px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .cardGrid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
     }
 }
 
@@ -244,5 +122,11 @@
 @media (max-width: 650px) {
     .gameMenu {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .app {
+        padding: 35px 15px;
     }
 }
