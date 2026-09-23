@@ -19,7 +19,15 @@
     75% { background-position: 35% 70%,80% 55%,60% 30%,80% 45%; }
     100% { background-position: 100% 45%,10% 80%,15% 85%,100% 55%; }
 }
-.header { max-width: 700px; margin: 0 auto; }
+.header { max-width: 700px; margin: 0 auto; animation: fadeUp .65s ease both; }
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+    from { opacity: 0; transform: translateY(18px) scale(.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
 .eyebrow { margin: 0 0 8px; font-size: 14px; font-weight: 700; letter-spacing: 2px; }
 .header h1 { margin: 0; font-size: clamp(32px,6vw,52px); }
 .subtitle { margin: 10px 0 0; font-size: 17px; opacity: .7; }
