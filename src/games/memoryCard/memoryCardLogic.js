@@ -15,9 +15,9 @@ export function shuffleCards(cards) {
 
 export function getCardsForLevel(animePool, level) {
     const levelSizes = {
-        1: 6,
-        2: 12,
-        3: 20,
+        1: 12,
+        2: 20,
+        3: 40,
     };
 
     const cardCount = levelSizes[level];
