@@ -127,13 +127,7 @@ function useAnimePool() {
                     return;
                 }
 
-                setAnimePool(
-                    fallbackAnime.map(([animeId, name, image]) => ({
-                        animeId,
-                        name,
-                        image,
-                    }))
-                );
+                setAnimePool(fallbackAnime);
                 setUsingFallback(true);
                 setError(error.message);
             } finally {
