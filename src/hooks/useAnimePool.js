@@ -1,22 +1,56 @@
 import { useEffect, useState } from "react";
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const query = `
+    query ($page: Int, $perPage: Int) {
+        Page(page: $page, perPage: $perPage) {
+            media(
+                type: ANIME
+                sort: POPULARITY_DESC
+                isAdult: true
+            ) {
+                id
+                title {
+                    romaji
+                    english
+                }
+                coverImage {
+                    large
+                }
+            }
+        }
+    }
+`;
 
 async function fetchAnimePage(page) {
-    const response = await fetch(
-        `https://api.jikan.moe/v4/anime?page=${page}&limit=25`
-    );
+    const response = await fetch("https://graphql.anilist.co", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body: JSON.stringify({
+            query,
+            variables: {
+                page,
+                perPage: 25,
+            },
+        }),
+    });
 
     if (!response.ok) {
         throw new Error(`Request failed: ${response.status}`);
     }
 
-    const data = await response.json();
+    const result = await response.json();
 
-    return data.data.map((item) => ({
-        animeId: item.mal_id,
-        name: item.title,
-        image: item.images.jpg.image_url,
+    if (result.errors) {
+        throw new Error(result.errors[0].message);
+    }
+
+    return result.data.Page.media.map((anime) => ({
+        animeId: anime.id,
+        name: anime.title.english || anime.title.romaji,
+        image: anime.coverImage.large,
     }));
 }
 
@@ -29,9 +63,6 @@ function useAnimePool() {
         async function fetchAnime() {
             try {
                 const pageOne = await fetchAnimePage(1);
-
-                await delay(1000);
-
                 const pageTwo = await fetchAnimePage(2);
 
                 setAnimePool([...pageOne, ...pageTwo]);
