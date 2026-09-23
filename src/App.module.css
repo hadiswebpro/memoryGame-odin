@@ -57,3 +57,16 @@
 .app:has(> .header) .header { width: 100%; }
 .app:has(> .header) { min-height: 100vh; }
 @media (max-width:650px) { .app:has(> .header) { padding-top: 28px; padding-bottom: 28px; } .app:has(> .header) .gameMenu { margin-top: 70px; } }
+
+.levelPage { width: 100%; max-width: 1100px; margin: 0 auto; position: relative; }
+.levelPage .backButton { margin: 0 0 45px; }
+.levelPage .header { margin-bottom: 45px; }
+.levelPage .selector { margin-top: 0; }
+@media (max-width: 650px) {
+  .levelPage { padding-top: 0; }
+  .levelPage .backButton { margin: 0 0 48px; align-self: flex-start; }
+  .levelPage .header { margin-bottom: 42px; }
+  .levelPage .header h1 { font-size: clamp(30px, 8vw, 42px); }
+  .levelPage .subtitle { font-size: 15px; }
+  .levelPage .levels { gap: 10px; }
+}
