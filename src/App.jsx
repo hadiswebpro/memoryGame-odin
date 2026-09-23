@@ -10,6 +10,7 @@ function App() {
     const [level, setLevel] = useState(null);
     const [isPreparing, setIsPreparing] = useState(false);
     const [preparingSeconds, setPreparingSeconds] = useState(10);
+    const [hasPreparedOnce, setHasPreparedOnce] = useState(false);
 
     const { animePool, loading, error, usingFallback } = useAnimePool();
 
@@ -19,25 +20,27 @@ function App() {
 
     function handleLevelSelect(selectedLevel) {
         setLevel(selectedLevel);
-        setPreparingSeconds(10);
+        const preparationTime = hasPreparedOnce ? 2 : 10;
+        setPreparingSeconds(preparationTime);
         setIsPreparing(true);
     }
 
     useEffect(() => {
         if (!isPreparing || level === null) return;
 
-        let remaining = 10;
+        let remaining = preparingSeconds;
         const timerId = setInterval(() => {
             remaining -= 1;
             setPreparingSeconds(remaining);
             if (remaining <= 0) {
                 clearInterval(timerId);
                 setIsPreparing(false);
+                setHasPreparedOnce(true);
             }
         }, 1000);
 
         return () => clearInterval(timerId);
-    }, [isPreparing, level]);
+    }, [isPreparing, level, preparingSeconds]);
 
     function handleChangeLevel() {
         setLevel(null);
