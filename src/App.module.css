@@ -36,6 +36,8 @@
 .loader { width: 35px; height: 35px; border: 4px solid black; border-top-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .gameMenu { display: flex; justify-content: center; gap: 18px; margin-top: 70px; }
+.gameCard { animation: popIn .55s ease both; }
+.gameCard:nth-child(2) { animation-delay: .12s; }
 .gameCard { width: 300px; min-height: 170px; padding: 22px; border: 2px solid black; border-radius: 24px; background: rgba(255,255,255,.72); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; cursor: pointer; transition: transform .2s ease,box-shadow .2s ease; }
 .gameCard:not(:disabled):hover { transform: translateY(-6px); box-shadow: 0 8px 0 black; }
 .gameCard:disabled { cursor: not-allowed; opacity: .5; }
