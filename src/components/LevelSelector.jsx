@@ -1,19 +1,30 @@
+import styles from "./LevelSelector.module.css";
+
 function LevelSelector({ onSelectLevel }) {
+    const levels = [
+        { level: 1, cards: 6 },
+        { level: 2, cards: 12 },
+        { level: 3, cards: 20 },
+    ];
+
     return (
-        <div>
-            <h2>Select Level</h2>
+        <div className={styles.selector}>
+            <h2>Choose your level</h2>
 
-            <button onClick={() => onSelectLevel(1)}>
-                Level 1
-            </button>
-
-            <button onClick={() => onSelectLevel(2)}>
-                Level 2
-            </button>
-
-            <button onClick={() => onSelectLevel(3)}>
-                Level 3
-            </button>
+            <div className={styles.levels}>
+                {levels.map(({ level, cards }) => (
+                    <button
+                        key={level}
+                        className={styles.levelButton}
+                        onClick={() => onSelectLevel(level)}
+                        type="button"
+                    >
+                        <span className={styles.levelNumber}>{level}</span>
+                        <span className={styles.levelTitle}>Level {level}</span>
+                        <span className={styles.levelCards}>{cards} cards</span>
+                    </button>
+                ))}
+            </div>
         </div>
     );
 }
