@@ -50,38 +50,36 @@ const fallbackAnime = fallbackAnimeNames.map((name, index) => ({
 }));
 
 async function fetchAnimePage(page) {
-    try {
-        const response = await fetch("https://graphql.anilist.co", {
+    const response = await fetch("https://graphql.anilist.co", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
         },
-            body: JSON.stringify({
-                query,
-                variables: {
-                    page,
-                    perPage: 25,
-                },
-            }),
-        });
+        body: JSON.stringify({
+            query,
+            variables: {
+                page,
+                perPage: 25,
+            },
+        }),
+    });
 
-            if (!response.ok) {
-            throw new Error(`Request failed: ${response.status}`);
-        }
-
-        const result = await response.json();
-
-        if (result.errors) {
-            throw new Error(result.errors[0].message);
-        }
-
-        return result.data.Page.media.map((anime) => ({
-            animeId: anime.id,
-            name: anime.title.english || anime.title.romaji,
-            image: anime.coverImage.large,
-        }));
+    if (!response.ok) {
+        throw new Error(`Request failed: ${response.status}`);
     }
+
+    const result = await response.json();
+
+    if (result.errors) {
+        throw new Error(result.errors[0].message);
+    }
+
+    return result.data.Page.media.map((anime) => ({
+        animeId: anime.id,
+        name: anime.title.english || anime.title.romaji,
+        image: anime.coverImage.large,
+    }));
 }
 
 function useAnimePool() {
