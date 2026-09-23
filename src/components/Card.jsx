@@ -12,11 +12,7 @@ function Card({ image, name, isFlipped = true, isMatched = false, onClick }) {
         >
             <span className={styles.cardInner}>
                 <span className={styles.cardFront}>
-                    <img
-                        src={image}
-                        alt={name}
-                        className={styles.image}
-                    />
+                    <img src={image} alt={name} className={styles.image} />
                 </span>
 
                 <span className={styles.cardBack} aria-hidden="true">
