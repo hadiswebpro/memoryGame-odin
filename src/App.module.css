@@ -54,7 +54,7 @@
 .actions button:active,.backButton:active,.result button:active { transform:translateY(2px) scale(.98); box-shadow:0 2px 0 rgba(115,135,125,.3); }
 .actions button:focus-visible,.backButton:focus-visible,.result button:focus-visible { outline:3px solid rgba(226,163,184,.8); outline-offset:3px; }
 @media (prefers-reduced-motion: reduce) { .app { animation:none; } }
-.preparing { min-height: 75vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: #53675e; }
+.preparing { min-height: 75vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: #53675e; animation: fadeUp .5s ease both; }
 .preparingIcon { font-size: 58px; animation: preparingPulse 1.2s ease-in-out infinite; }
 .preparing h1 { margin: 0; font-size: clamp(32px, 6vw, 50px); }
 .preparing p:not(.eyebrow) { margin: 0; opacity: .7; }
