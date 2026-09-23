@@ -1,12 +1,17 @@
 import styles from "./Card.module.css";
 
-function Card({ name, onClick }) {
+function Card({ name, image, onClick }) {
     return (
         <div className={styles.card} onClick={onClick}>
-            {name}
+            <img
+                src={image}
+                alt={name}
+                className={styles.image}
+            />
+
+            <p>{name}</p>
         </div>
     );
 }
 
 export default Card;
-
