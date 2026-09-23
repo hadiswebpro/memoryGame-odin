@@ -33,6 +33,9 @@
     transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
+.levelButton:nth-child(2) { animation-delay: .1s; }
+.levelButton:nth-child(3) { animation-delay: .2s; }
+
 .levelButton:hover {
     transform: translateY(-8px) scale(1.035);
     background: rgba(248, 226, 234, 0.9);
