@@ -87,3 +87,6 @@
     .levelTitle { font-size: 14px; }
     .levelCards { font-size: 11px; }
 }
+
+@media (min-width: 651px) { .selector { transform: translateY(35px); } }
+@media (max-width: 650px) { .selector { transform: translateY(28px); } }
