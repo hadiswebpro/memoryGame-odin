@@ -12,7 +12,7 @@
 .actions button:hover, .result button:hover { transform: translateY(-5px) scale(1.04); background: #f3d9e2; box-shadow: 0 9px 0 #b7a4a9; }
 .actions button:active, .result button:active { transform: translateY(2px) scale(.98); box-shadow: 0 2px 0 #b7a4a9; }
 .actions button:focus-visible, .result button:focus-visible { outline: 3px solid rgba(226,163,184,.8); outline-offset: 3px; }
-.cardGrid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 18px; width: 100%; max-width: 1100px; margin: 0 auto; }
+.cardGrid { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 18px; width: 100%; max-width: 1100px; margin: 0 auto; }
 .result { max-width: 450px; margin: 30px auto; padding: 30px 20px; border: 2px solid rgba(79,104,94,.25); border-radius: 20px; background: rgba(255,250,244,.8); color: #53675e; text-align: center; box-shadow: 0 12px 25px rgba(104,129,117,.15); backdrop-filter: blur(8px); }
 .result h2 { margin: 0 0 8px; font-size: 30px; }
 .result p { margin: 0 0 20px; opacity: .7; }
