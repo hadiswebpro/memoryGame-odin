@@ -1,8 +1,8 @@
 export function createMatchingCards(animePool, level) {
     const levelPairs = {
-        1: 6,
-        2: 8,
-        3: 10,
+        1: 10,
+        2: 15,
+        3: 25,
     };
 
     const pairCount = levelPairs[level];
