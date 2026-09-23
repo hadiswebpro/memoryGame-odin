@@ -27,23 +27,12 @@ function App() {
         setLevel(null);
     }
 
-    if (loading) {
+    if (loading && animePool.length === 0) {
         return (
             <div className={styles.app}>
                 <div className={styles.message}>
                     <div className={styles.loader}></div>
                     <p>Loading anime...</p>
-                </div>
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div className={styles.app}>
-                <div className={styles.message}>
-                    <h2>Something went wrong 😢</h2>
-                    <p>{error}</p>
                 </div>
             </div>
         );
