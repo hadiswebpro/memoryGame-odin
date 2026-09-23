@@ -21,4 +21,4 @@
 .result h2 { margin: 0 0 8px; font-size: 30px; }
 .result p { margin: 0 0 20px; opacity: .7; }
 @media (max-width: 900px) { .cardGrid { grid-template-columns: repeat(5,minmax(0,1fr)); gap: 14px; } }
-@media (max-width: 600px) { .gameInfo { gap: 8px; } .stat { min-width: 70px; padding: 10px; } .actions { flex-direction: column; max-width: 220px; margin: 0 auto 30px; } .cardGrid { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; } }
+@media (max-width: 600px) { .gameInfo { gap: 8px; } .stat { min-width: 70px; padding: 10px; } .actions { flex-direction: column; max-width: 220px; margin: 0 auto 30px; } .cardGrid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; } }
