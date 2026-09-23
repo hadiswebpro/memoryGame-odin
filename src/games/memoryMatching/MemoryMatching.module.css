@@ -1,5 +1,5 @@
 .game { width: 100%; }
-.header { max-width: 700px; margin: 0 auto 30px; text-align: center; }
+.header { max-width: 700px; margin: 0 auto 55px; text-align: center; padding-top: 35px; }
 .eyebrow { margin: 0 0 8px; font-size: 14px; font-weight: 700; letter-spacing: 2px; }
 .header h1 { margin: 0; font-size: clamp(32px, 6vw, 52px); }
 .subtitle { margin: 10px 0 0; font-size: 17px; opacity: 0.7; }
