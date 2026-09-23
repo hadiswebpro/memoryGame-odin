@@ -4,9 +4,9 @@
     box-sizing: border-box;
     text-align: center;
     background:
-        radial-gradient(circle at 15% 15%, rgba(214, 244, 229, 0.95), transparent 34%),
-        radial-gradient(circle at 85% 20%, rgba(250, 221, 232, 0.9), transparent 32%),
-        linear-gradient(135deg, #d9efe4 0%, #e9f4df 45%, #f8e1e9 100%);
+        radial-gradient(circle at 12% 15%, rgba(193, 232, 202, 0.95), transparent 34%),
+        radial-gradient(circle at 88% 25%, rgba(250, 211, 224, 0.9), transparent 34%),
+        linear-gradient(135deg, #d7f0df 0%, #e5f2d9 45%, #f7dce5 100%);
     background-size: 150% 150%;
     animation: softGradient 14s ease-in-out infinite alternate;
 }
