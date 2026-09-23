@@ -87,9 +87,7 @@ function App() {
 
                 {usingFallback && (
                     <div className={styles.notice}>
-                        <strong>Anime API is unavailable right now.</strong>
-                        <span>The game is using the local backup.</span>
-                        {error && <small>API error: {error}</small>}
+                        Failed to load the game, please check your internet connection.
                     </div>
                 )}
 
