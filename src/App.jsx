@@ -124,6 +124,7 @@ function App() {
 
         return (
             <div className={styles.app}>
+                <div className={styles.levelPage}>
                 <button
                     className={styles.backButton}
                     onClick={handleBackToGames}
@@ -150,6 +151,7 @@ function App() {
                     game={game}
                     onSelectLevel={handleLevelSelect}
                 />
+                </div>
             </div>
         );
     }
