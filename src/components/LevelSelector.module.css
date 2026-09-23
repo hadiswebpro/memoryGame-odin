@@ -15,7 +15,8 @@
 }
 
 .levelButton {
-    min-height: 190px;
+    aspect-ratio: 1 / 1;
+    min-height: 0;
     padding: 24px 18px;
     border: 2px solid rgba(79, 104, 94, 0.28);
     border-radius: 24px;
@@ -77,8 +78,9 @@
     }
 
     .levelButton {
-        min-height: 105px;
-        padding: 12px 6px;
+        aspect-ratio: 1 / 1;
+        min-height: 0;
+        padding: 10px 6px;
         border-radius: 16px;
         gap: 4px;
     }
