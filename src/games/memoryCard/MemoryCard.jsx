@@ -14,11 +14,30 @@ function MemoryCard({ animePool, level, onChangeLevel }) {
     const [currentCards, setCurrentCards] = useState([]);
     const [gameWon, setGameWon] = useState(false);
     const [gameOver, setGameOver] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(4);
 
     useEffect(() => {
         const cards = getCardsForLevel(animePool, level);
         setCurrentCards(cards);
     }, [animePool, level]);
+
+    useEffect(() => {
+        if (gameWon || gameOver || currentCards.length === 0) return;
+
+        setTimeLeft(4);
+        const timerId = setInterval(() => {
+            setTimeLeft((current) => {
+                if (current <= 1) {
+                    clearInterval(timerId);
+                    setGameOver(true);
+                    return 0;
+                }
+                return current - 1;
+            });
+        }, 1000);
+
+        return () => clearInterval(timerId);
+    }, [score, gameWon, gameOver, currentCards.length]);
 
     function handleCardClick(card) {
         const alreadySelected = selectedCards.some(
@@ -57,6 +76,7 @@ function MemoryCard({ animePool, level, onChangeLevel }) {
         setSelectedCards([]);
         setGameWon(false);
         setGameOver(false);
+        setTimeLeft(4);
 
         const newCards = getCardsForLevel(animePool, level);
 
@@ -89,6 +109,11 @@ function MemoryCard({ animePool, level, onChangeLevel }) {
                 <div className={styles.stat}>
                     <span>Best</span>
                     <strong>{bestScore}</strong>
+                </div>
+
+                <div className={styles.stat}>
+                    <span>Time</span>
+                    <strong>{timeLeft}s</strong>
                 </div>
             </div>
 
