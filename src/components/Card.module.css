@@ -1,42 +1,43 @@
 .card {
     width: 100%;
-    min-height: 200px;
-
-    border: 2px solid black;
-    border-radius: 16px;
-
+    min-height: 210px;
+    padding: 10px;
+    border: 2px solid rgba(95, 116, 107, 0.45);
+    border-radius: 20px;
+    background: #f4e6d2;
+    box-shadow: 0 10px 24px rgba(84, 100, 91, 0.16);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-
-    background-color: white;
-
-    font-size: 20px;
-    font-weight: bold;
-
     cursor: pointer;
-
     box-sizing: border-box;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    overflow: hidden;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.035);
+    box-shadow: 0 18px 30px rgba(84, 100, 91, 0.23);
 }
 
 .card:active {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(0.985);
+}
+
+.card:focus-visible {
+    outline: 3px solid rgba(226, 163, 184, 0.9);
+    outline-offset: 4px;
 }
 
 .image {
     width: 100%;
-    height: 160px;
+    height: 190px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 14px;
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.card:hover .image {
+    transform: scale(1.045);
 }
