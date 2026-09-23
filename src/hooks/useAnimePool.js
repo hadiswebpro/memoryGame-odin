@@ -50,9 +50,6 @@ const fallbackAnime = fallbackAnimeNames.map((name, index) => ({
 }));
 
 async function fetchAnimePage(page) {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 8000);
-
     try {
         const response = await fetch("https://graphql.anilist.co", {
         method: "POST",
@@ -67,7 +64,6 @@ async function fetchAnimePage(page) {
                     perPage: 25,
                 },
             }),
-            signal: controller.signal,
         });
 
             if (!response.ok) {
@@ -85,8 +81,6 @@ async function fetchAnimePage(page) {
             name: anime.title.english || anime.title.romaji,
             image: anime.coverImage.large,
         }));
-    } finally {
-        clearTimeout(timeoutId);
     }
 }
 
