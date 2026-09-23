@@ -21,60 +21,73 @@ const query = `
     }
 `;
 
-const fallbackAnime = [
-    [21, "One Piece", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-8d6e5d6f.jpg"],
-    [20, "Naruto", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20-d7f6b4d6.jpg"],
-    [16498, "Attack on Titan", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-6VvXwG9Q.jpg"],
-    [101922, "Demon Slayer", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-9J6M0q9m.jpg"],
-    [113415, "Jujutsu Kaisen", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-8z8m2X2G.jpg"],
-    [1535, "Death Note", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1535-7Y3n3k1G.jpg"],
-    [21459, "My Hero Academia", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21459-2H5k4V4Y.jpg"],
-    [20464, "Haikyuu!!", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20464-8M4c9V3P.jpg"],
-    [142838, "SPY x FAMILY", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx142838-3J4m9K7P.jpg"],
-    [21087, "One Punch Man", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21087-5K7p2M8Q.jpg"],
-    [269, "Bleach", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx269-4R8n6T2W.jpg"],
-    [5114, "Fullmetal Alchemist: Brotherhood", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-6Q2v9N4L.jpg"],
-    [11061, "Hunter x Hunter", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11061-1X5m7P3K.jpg"],
-    [9253, "Steins;Gate", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9253-2Z8k4L6M.jpg"],
-    [99147, "March Comes in Like a Lion", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx99147-7N3q5R8T.jpg"],
-    [100166, "Violet Evergarden", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx100166-4M6p8K2V.jpg"],
-    [106479, "Fruits Basket", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx106479-9L2n5Q7W.jpg"],
-    [11757, "Sword Art Online", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11757-3P6r8M1K.jpg"],
-    [101280, "Made in Abyss", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101280-5T7v2N9Q.jpg"],
-    [98659, "Kaguya-sama: Love is War", "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx98659-8W4m1P6R.jpg"],
+const fallbackAnimeNames = [
+    "One Piece", "Naruto", "Attack on Titan", "Demon Slayer",
+    "Jujutsu Kaisen", "Death Note", "My Hero Academia", "Haikyuu!!",
+    "SPY x FAMILY", "One Punch Man", "Bleach", "Fullmetal Alchemist",
+    "Hunter x Hunter", "Steins;Gate", "Violet Evergarden", "Fruits Basket",
+    "Sword Art Online", "Made in Abyss", "Kaguya-sama", "Your Name",
 ];
 
+function createFallbackImage(name, index) {
+    const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+            <rect width="600" height="800" rx="32" fill="#dcefe7"/>
+            <circle cx="300" cy="285" r="120" fill="#f8e3ea"/>
+            <text x="300" y="315" text-anchor="middle" font-size="110" fill="#8aa89d">✦</text>
+            <text x="300" y="540" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="700" fill="#6f665d">${name}</text>
+            <text x="300" y="590" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#8a8178">backup card ${index + 1}</text>
+        </svg>
+    `;
+
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
+const fallbackAnime = fallbackAnimeNames.map((name, index) => ({
+    animeId: `fallback-${index + 1}`,
+    name,
+    image: createFallbackImage(name, index),
+}));
+
 async function fetchAnimePage(page) {
-    const response = await fetch("https://graphql.anilist.co", {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+    try {
+        const response = await fetch("https://graphql.anilist.co", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
         },
-        body: JSON.stringify({
-            query,
-            variables: {
-                page,
-                perPage: 25,
-            },
-        }),
-    });
+            body: JSON.stringify({
+                query,
+                variables: {
+                    page,
+                    perPage: 25,
+                },
+            }),
+            signal: controller.signal,
+        });
 
-    if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`);
+            if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.errors) {
+            throw new Error(result.errors[0].message);
+        }
+
+        return result.data.Page.media.map((anime) => ({
+            animeId: anime.id,
+            name: anime.title.english || anime.title.romaji,
+            image: anime.coverImage.large,
+        }));
+    } finally {
+        clearTimeout(timeoutId);
     }
-
-    const result = await response.json();
-
-    if (result.errors) {
-        throw new Error(result.errors[0].message);
-    }
-
-    return result.data.Page.media.map((anime) => ({
-        animeId: anime.id,
-        name: anime.title.english || anime.title.romaji,
-        image: anime.coverImage.large,
-    }));
 }
 
 function useAnimePool() {
