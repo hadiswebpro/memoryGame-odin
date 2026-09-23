@@ -3,7 +3,7 @@
 .eyebrow { margin: 0 0 8px; font-size: 14px; font-weight: 700; letter-spacing: 2px; }
 .header h1 { margin: 0; font-size: clamp(32px, 6vw, 52px); }
 .subtitle { margin: 10px 0 0; font-size: 17px; opacity: 0.7; }
-.gameInfo { display: flex; justify-content: center; gap: 14px; margin: 25px auto 18px; }
+.gameInfo { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 25px auto 18px; }
 .stat { min-width: 90px; padding: 12px 18px; border: 2px solid rgba(79,104,94,.25); border-radius: 16px; background: rgba(255,250,244,.72); color: #53675e; text-align: center; box-shadow: 0 5px 14px rgba(104,129,117,.14); backdrop-filter: blur(7px); }
 .stat span { display: block; font-size: 13px; opacity: .65; margin-bottom: 4px; }
 .stat strong { font-size: 22px; }
