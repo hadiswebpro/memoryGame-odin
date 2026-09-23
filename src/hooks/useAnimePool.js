@@ -14,7 +14,7 @@ const query = `
                     english
                 }
                 coverImage {
-                    medium
+                    large
                 }
             }
         }
@@ -78,7 +78,7 @@ async function fetchAnimePage(page) {
     return result.data.Page.media.map((anime) => ({
         animeId: anime.id,
         name: anime.title.english || anime.title.romaji,
-        image: anime.coverImage.medium,
+        image: anime.coverImage.large,
     }));
 }
 
