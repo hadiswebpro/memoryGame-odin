@@ -9,7 +9,7 @@ function App() {
     const [game, setGame] = useState(null);
     const [level, setLevel] = useState(null);
 
-    const { animePool, loading, usingFallback } = useAnimePool();
+    const { animePool, loading, error, usingFallback } = useAnimePool();
 
     function handleGameSelect(selectedGame) {
         setGame(selectedGame);
@@ -52,7 +52,9 @@ function App() {
 
                 {usingFallback && (
                     <div className={styles.notice}>
-                        Anime API is unavailable right now, so the game is using a local backup.
+                        <strong>Anime API is unavailable right now.</strong>
+                        <span>The game is using the local backup.</span>
+                        {error && <small>API error: {error}</small>}
                     </div>
                 )}
 
