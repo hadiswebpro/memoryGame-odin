@@ -115,12 +115,20 @@ function useAnimePool() {
                     .map((result) => result.value)
                     .flat();
 
+                const failedPages = results
+                    .filter((result) => result.status === "rejected")
+                    .map((result) => result.reason?.message || String(result.reason));
+
                 if (successfulPages.length >= 20) {
                     setAnimePool(successfulPages);
                     setUsingFallback(false);
                     setError(null);
                 } else {
-                    throw new Error("Anime API returned too little data.");
+                    const details = failedPages.length
+                        ? failedPages.join(" | ")
+                        : "Anime API returned too little data.";
+
+                    throw new Error(details);
                 }
             } catch (error) {
                 if (cancelled) {
