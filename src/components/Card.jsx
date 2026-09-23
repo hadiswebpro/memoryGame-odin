@@ -2,15 +2,13 @@ import styles from "./Card.module.css";
 
 function Card({ name, image, onClick }) {
     return (
-        <div className={styles.card} onClick={onClick}>
+        <button className={styles.card} onClick={onClick} type="button">
             <img
                 src={image}
-                alt={name}
+                alt=""
                 className={styles.image}
             />
-
-            <p>{name}</p>
-        </div>
+        </button>
     );
 }
 
