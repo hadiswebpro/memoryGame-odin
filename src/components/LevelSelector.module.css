@@ -15,9 +15,8 @@
 }
 
 .levelButton {
-    aspect-ratio: 1 / 1;
-    min-height: 0;
-    padding: 24px 18px;
+    min-height: 190px;
+    padding: 24px 28px;
     border: 2px solid rgba(79, 104, 94, 0.28);
     border-radius: 24px;
     background: rgba(255, 250, 244, 0.78);
@@ -50,14 +49,14 @@
 }
 
 .levelNumber {
-    width: 54px;
-    height: 54px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     display: grid;
     place-items: center;
     background: #d8eee4;
     color: #53675e;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 900;
 }
 
@@ -80,15 +79,16 @@
     .levelButton {
         aspect-ratio: 1 / 1;
         min-height: 0;
-        padding: 10px 6px;
+        width: 100%;
+        padding: 14px 8px;
         border-radius: 16px;
         gap: 4px;
     }
 
-    .levelNumber { width: 34px; height: 34px; font-size: 17px; }
-    .levelTitle { font-size: 14px; }
-    .levelCards { font-size: 11px; }
+    .levelNumber { width: 56px; height: 56px; font-size: 28px; }
+    .levelTitle { font-size: 16px; }
+    .levelCards { font-size: 12px; }
 }
 
-@media (min-width: 651px) { .selector { transform: translateY(35px); } }
-@media (max-width: 650px) { .selector { transform: translateY(28px); } }
+
+
