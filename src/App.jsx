@@ -8,7 +8,7 @@ function App() {
     const [game, setGame] = useState(null);
     const [level, setLevel] = useState(null);
 
-    const { animePool, loading, error } = useAnimePool();
+    const { animePool, loading, error, usingFallback } = useAnimePool();
 
     function handleGameSelect(selectedGame) {
         setGame(selectedGame);
@@ -63,6 +63,12 @@ function App() {
                         Choose a game and test your memory.
                     </p>
                 </header>
+
+                {usingFallback && (
+                    <div className={styles.notice}>
+                        Anime API is unavailable right now, so the game is using a local backup.
+                    </div>
+                )}
 
                 <div className={styles.gameMenu}>
                     <button
