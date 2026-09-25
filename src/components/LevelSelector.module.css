@@ -102,11 +102,6 @@
 }
 
 @media (max-width: 650px) {
-    .selector {
-        width: 100%;
-        margin-top: 0;
-    }
-
     .levels {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 9px;
@@ -115,7 +110,6 @@
     .levelButton {
         aspect-ratio: 1 / 1;
         min-height: 0;
-        width: 100%;
         padding: 12px 6px;
         border-radius: 16px;
         gap: 4px;
