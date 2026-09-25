@@ -84,7 +84,12 @@
     justify-content: center;
     min-height: calc(100vh - 100px);
 }
-.levelPage .backButton { margin: 0 0 45px; }
+.levelPage .backButton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
 .levelPage .header { margin-bottom: 45px; }
 @media (max-width: 650px) {
   .levelPage .backButton { margin-bottom: 48px; align-self: flex-start; }
