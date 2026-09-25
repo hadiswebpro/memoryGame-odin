@@ -75,11 +75,36 @@
     opacity: 0.65;
 }
 
+@media (max-width: 900px) {
+    .selector {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .levels {
+        gap: 12px;
+    }
+
+    .levelButton {
+        min-height: 145px;
+        padding: 16px 10px;
+        border-radius: 18px;
+    }
+
+    .levelNumber {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+    }
+
+    .levelTitle { font-size: 17px; }
+    .levelCards { font-size: 12px; }
+}
+
 @media (max-width: 650px) {
     .selector {
-        margin-top: 70px;
-        min-height: 0;
-        padding-top: 0;
+        width: 100%;
+        margin-top: 0;
     }
 
     .levels {
@@ -91,15 +116,17 @@
         aspect-ratio: 1 / 1;
         min-height: 0;
         width: 100%;
-        padding: 14px 8px;
+        padding: 12px 6px;
         border-radius: 16px;
         gap: 4px;
     }
 
-    .levelNumber { width: 56px; height: 56px; font-size: 28px; }
-    .levelTitle { font-size: 16px; }
-    .levelCards { font-size: 12px; }
+    .levelNumber {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .levelTitle { font-size: 14px; }
+    .levelCards { font-size: 11px; }
 }
-
-
-
