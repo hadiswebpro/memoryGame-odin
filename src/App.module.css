@@ -383,3 +383,133 @@
         font-size: 15px;
     }
 }
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgba(35, 42, 39, .58);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    animation: modalFadeIn .2s ease both;
+}
+
+.errorModal {
+    width: min(100%, 460px);
+    padding: 34px 30px 30px;
+    border: 2px solid rgba(79, 104, 94, .3);
+    border-radius: 28px;
+    background: rgba(255, 250, 244, .94);
+    color: #53675e;
+    box-shadow: 0 22px 60px rgba(39, 49, 44, .28);
+    animation: modalPopIn .25s ease both;
+}
+
+.modalIcon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 14px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #f8e3ea;
+    font-size: 28px;
+}
+
+.errorModal .eyebrow {
+    margin-bottom: 10px;
+}
+
+.errorModal h1 {
+    margin: 0;
+    font-size: clamp(25px, 5vw, 34px);
+    line-height: 1.15;
+}
+
+.errorModal > p:not(.eyebrow) {
+    margin: 14px auto 0;
+    max-width: 390px;
+    line-height: 1.6;
+    opacity: .72;
+}
+
+.modalActions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.modalActions button {
+    width: 100%;
+    min-height: 46px;
+    border: 2px solid rgba(79, 104, 94, .3);
+    border-radius: 14px;
+    padding: 10px 18px;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+
+.modalActions button:hover {
+    transform: translateY(-3px);
+}
+
+.primaryAction {
+    background: #d8eee4;
+    color: #43564e;
+    box-shadow: 0 5px 0 rgba(115, 135, 125, .35);
+}
+
+.secondaryAction {
+    background: #f4dce5;
+    color: #5f5057;
+    box-shadow: 0 5px 0 rgba(145, 116, 128, .25);
+}
+
+.tertiaryAction {
+    background: rgba(255, 255, 255, .7);
+    color: #53675e;
+}
+
+.modalActions button:focus-visible {
+    outline: 3px solid rgba(226, 163, 184, .8);
+    outline-offset: 3px;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalPopIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modalOverlay,
+    .errorModal {
+        animation: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .modalOverlay {
+        padding: 16px;
+    }
+
+    .errorModal {
+        padding: 28px 20px 22px;
+        border-radius: 22px;
+    }
+}
