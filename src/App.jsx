@@ -61,7 +61,7 @@ function App() {
 
     const showLoadError = Boolean(error) && !loading;
 
-    if (loading && animePool.length === 0) {
+    if ((loading || showLoadError) && animePool.length === 0) {
         return (
             <div className={styles.app}>
                 <LoadingScreen />
