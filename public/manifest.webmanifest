@@ -1,0 +1,22 @@
+{
+    "name": "Memory Games",
+    "short_name": "Memory Games",
+    "start_url": "/memoryGame-odin/",
+    "scope": "/memoryGame-odin/",
+    "display": "standalone",
+    "background_color": "#edf3dc",
+    "theme_color": "#d8eee4",
+    "description": "A collection of anime-themed memory games.",
+    "icons": [
+        {
+            "src": "/memoryGame-odin/favicon/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/memoryGame-odin/favicon/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
