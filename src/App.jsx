@@ -12,7 +12,14 @@ function App() {
     const [preparingSeconds, setPreparingSeconds] = useState(10);
     const [hasPreparedOnce, setHasPreparedOnce] = useState(false);
 
-    const { animePool, loading, error, usingFallback } = useAnimePool();
+    const {
+        animePool,
+        loading,
+        error,
+        savedAnimePool,
+        retry,
+        launchSavedCards,
+    } = useAnimePool();
 
     function handleGameSelect(selectedGame) {
         setGame(selectedGame);
@@ -32,6 +39,7 @@ function App() {
         const timerId = setInterval(() => {
             remaining -= 1;
             setPreparingSeconds(remaining);
+
             if (remaining <= 0) {
                 clearInterval(timerId);
                 setIsPreparing(false);
@@ -51,13 +59,21 @@ function App() {
         setLevel(null);
     }
 
+    const showLoadError = Boolean(error) && !loading;
+
     if (loading && animePool.length === 0) {
         return (
             <div className={styles.app}>
-                <div className={styles.message}>
-                    <div className={styles.loader}></div>
-                    <p>Loading anime...</p>
-                </div>
+                <LoadingScreen />
+
+                {showLoadError && (
+                    <LoadErrorModal
+                        hasSavedCards={savedAnimePool.length > 0}
+                        onRetry={retry}
+                        onBackToMenu={handleBackToGames}
+                        onLaunchSaved={launchSavedCards}
+                    />
+                )}
             </div>
         );
     }
@@ -87,12 +103,6 @@ function App() {
                         Choose a game and test your memory.
                     </p>
                 </header>
-
-                {usingFallback && (
-                    <div className={styles.notice}>
-                        Failed to load the game, please check your internet connection.
-                    </div>
-                )}
 
                 <div className={styles.gameMenu}>
                     <button
@@ -125,32 +135,32 @@ function App() {
         return (
             <div className={styles.app}>
                 <div className={styles.levelPage}>
-                <button
-                    className={styles.backButton}
-                    onClick={handleBackToGames}
-                    type="button"
-                >
-                    ← Back to Games
-                </button>
+                    <button
+                        className={styles.backButton}
+                        onClick={handleBackToGames}
+                        type="button"
+                    >
+                        ← Back to Games
+                    </button>
 
-                <header className={styles.header}>
-                    <p className={styles.eyebrow}>
-                        {isMatching ? "🧩 MEMORY MATCHING" : "🃏 MEMORY CARD"}
-                    </p>
+                    <header className={styles.header}>
+                        <p className={styles.eyebrow}>
+                            {isMatching ? "🧩 MEMORY MATCHING" : "🃏 MEMORY CARD"}
+                        </p>
 
-                    <h1>Select Level</h1>
+                        <h1>Select Level</h1>
 
-                    <p className={styles.subtitle}>
-                        {isMatching
-                            ? "How many pairs can you match?"
-                            : "How many cards can you remember?"}
-                    </p>
-                </header>
+                        <p className={styles.subtitle}>
+                            {isMatching
+                                ? "How many pairs can you match?"
+                                : "How many cards can you remember?"}
+                        </p>
+                    </header>
 
-                <LevelSelector
-                    game={game}
-                    onSelectLevel={handleLevelSelect}
-                />
+                    <LevelSelector
+                        game={game}
+                        onSelectLevel={handleLevelSelect}
+                    />
                 </div>
             </div>
         );
@@ -179,6 +189,69 @@ function App() {
             </div>
         );
     }
+}
+
+function LoadingScreen() {
+    return (
+        <div className={styles.message}>
+            <div className={styles.loader}></div>
+            <p>Loading anime...</p>
+        </div>
+    );
+}
+
+function LoadErrorModal({
+    hasSavedCards,
+    onRetry,
+    onBackToMenu,
+    onLaunchSaved,
+}) {
+    return (
+        <div className={styles.modalOverlay} role="presentation">
+            <div
+                className={styles.errorModal}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="load-error-title"
+            >
+                <div className={styles.modalIcon}>⚠️</div>
+                <p className={styles.eyebrow}>COULDN'T LOAD THE CARDS</p>
+                <h1 id="load-error-title">Check your internet connection.</h1>
+                <p>
+                    We couldn't get the latest anime cards. You can retry or use
+                    your saved cards if they are available.
+                </p>
+
+                <div className={styles.modalActions}>
+                    {hasSavedCards && (
+                        <button
+                            className={styles.primaryAction}
+                            onClick={onLaunchSaved}
+                            type="button"
+                        >
+                            Launch with saved cards
+                        </button>
+                    )}
+
+                    <button
+                        className={styles.secondaryAction}
+                        onClick={onRetry}
+                        type="button"
+                    >
+                        Retry
+                    </button>
+
+                    <button
+                        className={styles.tertiaryAction}
+                        onClick={onBackToMenu}
+                        type="button"
+                    >
+                        Back to Menu
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
